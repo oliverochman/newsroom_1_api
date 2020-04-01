@@ -28,8 +28,7 @@ RSpec.describe "POST api/subscriptions" do
       before do
         post "/api/subscriptions",
              params: {
-               stripeToken: card_token,
-               email: user.email
+               stripeToken: card_token
              },
              headers: headers
         user.reload
@@ -54,8 +53,7 @@ RSpec.describe "POST api/subscriptions" do
       before do
         post "/api/subscriptions",
              params: {
-               stripeToken: invalid_token,
-               email: user.email
+               stripeToken: invalid_token
              },
              headers: headers
       end
@@ -80,7 +78,7 @@ RSpec.describe "POST api/subscriptions" do
       end
 
       it "recieves 'No Stripe token detected'" do
-        expect(response_json["error_message"]).to eq "No stripe token sent"
+        expect(response_json["error_message"]).to eq "Internal problem with your payment, please contact our customer support"
       end
 
       it "recieve error response" do
@@ -113,8 +111,7 @@ RSpec.describe "POST api/subscriptions" do
 
         post "/api/subscriptions",
           params: {
-            stripeToken: card_token,
-            email: user.email
+            stripeToken: card_token
           },
           headers: headers
       end
