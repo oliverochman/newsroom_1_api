@@ -5,6 +5,7 @@ class ArticleShowSerializer < ActiveModel::Serializer
 
   def image
     return nil unless object.image.attached?
+    binding.pry
     if Rails.env.test?
       rails_blob_url(object.image)
     else
